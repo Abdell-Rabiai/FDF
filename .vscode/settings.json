@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "fdf.h": "c",
+        "mlx_int.h": "c",
+        "errno.h": "c"
+    }
+}

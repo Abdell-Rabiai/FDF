@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/23 15:36:17 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:29:19 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,12 @@
 # include <mlx.h>
 # include "../get_next_line/get_next_line.h"
 # include "../ft_printf/ft_printf.h"
-# include <string.h>
-# include <errno.h>
-# include <sys/wait.h>
+# include "../libft_utils/libft_utils.h"
 
-size_t	ft_strlen(const char *str);
 int		ft_printf(const char *string_format, ...);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-int		ft_how_many_words(const char *s, char c);
-char	**ft_free_split(char **strings);
-int		ft_get_length_of_word(const char *s, char c);
-char	*return_the_first_word(const char *s, char c);
-char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int check_file_format(char *filename);
 
 #endif

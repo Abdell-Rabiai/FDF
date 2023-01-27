@@ -9,9 +9,7 @@ COLOUR_YELLOW=\033[0;33m
 bold := $(shell tput bold)
 sgr0 := $(shell tput sgr0)
 
-SOURCES = mandatory/fdf_main.c mandatory/fdf_utils.c mandatory/ft_split.c get_next_line/get_next_line.c\
-get_next_line/get_next_line_utils.c 
-# $(shell ls mlx/*.c)
+SOURCES = $(shell ls libft_utils/*.c) $(shell ls mandatory/*.c) $(shell ls get_next_line/*.c) 
 
 HEADER_FILES = get_next_line/get_next_line.h mandatory/fdf.h
 
@@ -19,7 +17,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -Imlx -g
 
-MLXFLAGS = -L -lmlx -framework OpenGL -framework AppKit -lz
+MLXFLAGS = -lmlx -framework OpenGL -framework AppKit -lz
 # MLXFLAGS = -O3 -lmlx -framework OpenGL -framework AppKit -lz mlx/libmlx.a
 
 RM = rm -rf
@@ -45,7 +43,7 @@ $(NAME) : $(OBJECTS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 fdf_exc : $(HEADER_FILES)
-	$(CC) $(CFLAGS) $(MLXFLAGS) mandatory/fdf_main.c libftprintf.a mlx/libmlx.a -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAGS) mandatory/fdf_main.c library libftprintf.a mlx/libmlx.a -o $(NAME)
 	$(ECHO2)
 
 libftprintf :
@@ -59,7 +57,7 @@ fclean : clean
 	$(RM) $(NAME) library libftprintf.a
 	cd ft_printf && make fclean
 	cd get_next_line && $(RM) *.o
-	$(RM) *.dSYM
+	$(RM) *.dSYM .vscode
 	$(ECHO4)
 
 re : fclean all

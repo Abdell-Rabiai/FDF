@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_main.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/27 18:27:49 by arabiai          ###   ########.fr       */
+/*   Created: 2022/10/18 11:19:06 by arabiai           #+#    #+#             */
+/*   Updated: 2023/01/27 17:50:05 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../mandatory/fdf.h"
 
-int main(int argc, char **argv)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    file_error(argc, argv);
-    return (0);
+	size_t			i;
+	unsigned char	*ss1;
+	unsigned char	*ss2;
+
+	i = 0;
+	ss1 = (unsigned char *)s1;
+	ss2 = (unsigned char *)s2;
+	while ((*(ss1 + i) || *(ss2 + i)) && i < n)
+	{
+		if (*(ss1 + i) != *(ss2 + i))
+			return (*(ss1 + i) - *(ss2 + i));
+		else
+			i++;
+	}
+	return (0);
 }

@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_main.c                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/27 18:27:49 by arabiai          ###   ########.fr       */
+/*   Created: 2022/10/18 11:32:42 by arabiai           #+#    #+#             */
+/*   Updated: 2023/01/27 18:11:54 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft_utils.h"
 
-int main(int argc, char **argv)
+char	*ft_strrchr(const char *s, int c)
 {
-    file_error(argc, argv);
-    return (0);
+	int				l;
+	unsigned char	cc;
+
+	l = ft_strlen(s);
+	cc = c;
+	while (l > 0 && cc != *(s + l))
+		l--;
+	if (l == 0 && cc != *s)
+		return (0);
+	return ((char *)(s + l));
 }

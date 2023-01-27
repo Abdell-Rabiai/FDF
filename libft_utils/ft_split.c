@@ -6,11 +6,11 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:43:14 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/21 19:52:56 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/01/27 18:13:54 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft_utils.h"
 
 int	ft_how_many_words(const char *s, char c)
 {

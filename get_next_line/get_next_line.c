@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 19:24:56 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/28 01:43:09 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/01/28 04:35:23 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,13 @@ char	*get_next_line(int fd)
 
 // int main(){
 	
-// 	int fd = open("test.fdf", O_RDONLY);
-// 	char *line;
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		puts(line);
-// 		line = get_next_line(fd);
-// 	}
-// 	puts(get_next_line(fd));
+	// int fd = open("42.fdf", O_RDONLY);
+	// char *line;
+	// line = get_next_line(fd);
+	// while (line)
+	// {
+	// 	puts(line);
+	// 	line = get_next_line(fd);
+	// }
+	// puts(get_next_line(fd));
 // }

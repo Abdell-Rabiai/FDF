@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/27 23:49:58 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/01/28 04:48:14 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct my_map
 } map;
 
 void	get_map_infos(map *carte, char *filename);
-int		get_map_height(char *filename);
-int		get_map_width(char *filename);
+void	get_map_dimensions(char *filename, map *carte);
+// int		get_map_width(char *filename);
 void	fill_the_matrix(map *carte, char *filename);
 
 int		ft_printf(const char *string_format, ...);

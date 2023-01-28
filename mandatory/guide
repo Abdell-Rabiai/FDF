@@ -48,7 +48,7 @@
 **			y` = (x + y) * sin(angle) - z
 **		- x` and y` are coordintes in 3D format (default angle 0.8)
 **	----------------
-**	5. adding donuses (move, rotation, zoom)
+**	5. adding bonuses (move, rotation, zoom)
 **		- when you press button on keyboard the func. mlx_key_hook(win_ptr, deal_key, NULL);
 **			call the func. deal_key.
 **		- In the deal key func. you have to change some parametrs, clear the window with

@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:23:27 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/27 18:33:42 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/01/27 19:38:09 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,6 @@ void	ft_putchar_fd_count(char c, int fd, int *count)
 	write(fd, &c, 1);
 	(*count)++;
 }
-
-// size_t	ft_strlen(const char *str)
-// {
-// 	int	length;
-
-// 	length = 0;
-// 	while (*str)
-// 	{
-// 		length++;
-// 		str++;
-// 	}
-// 	return (length);
-// }
 
 void	ft_putnbr_base(int n, int fd, int *count, char *base)
 {

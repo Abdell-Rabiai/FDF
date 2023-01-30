@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/28 04:52:45 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/01/30 18:51:09 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void display_map(map *carte)
 	while (i < carte->height)
 	{
 		for (int j = 0; j < carte->width; j++)
-			printf("%d  ", carte->matrice[i][j]);
+			printf("%3d", carte->matrice[i][j]);
 		i++;
 		printf("\n");
 	}
@@ -92,10 +92,8 @@ void get_map_infos(map *carte, char *filename)
 	get_map_dimensions(filename, carte);
 
 	if (carte->width <= 0 || carte->height <= 0)
-		ft_printf("ERROR : incorrect heght and width values of the file\n");
-	// check that all rows have columns of the same size height
-	
-	carte->matrice = (int **)malloc(sizeof(int *) * (carte->height));
+		ft_printf("ERROR : incorrect heght and width values of the file\n");	
+	carte->matrice = (int **)malloc(sizeof(int *) * (carte->height + 1));
 	if(!carte->matrice)
 		perror("ERROR allocating memory for the map\n");
 	while (i < carte->height)

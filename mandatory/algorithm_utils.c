@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_main.c                                         :+:      :+:    :+:   */
+/*   algorithm_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/30 17:20:44 by arabiai          ###   ########.fr       */
+/*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
+/*   Updated: 2023/01/30 15:34:22 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fdf.h"
+// #include "fdf.h"
 
-int main(int argc, char **argv)
-{
-    map *carte;
+// void draw_bresenhams_line(int x, int y, int x1, int y2, map carte)
+// {
     
-    carte = (map*)malloc(sizeof(map));
-    file_error(argc, argv);
-    get_map_infos(carte, argv[1]);
-
-	return (0);
-}
+// }

@@ -14,7 +14,7 @@
 **				steps for x: 2
 **				steps for y: 4
 **				that means that y should grow 2 times faster than x
-**				ewery loop step: y += 1 and x += 0.5
+**				every loop step: y += 1 and x += 0.5
 **				after 4 steps x and y will be equal with x1, y1
 **
 **					real x:y		x:y     pixels				

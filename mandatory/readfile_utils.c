@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/02 12:55:04 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 13:37:12 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 void display_map(map *carte)
 {
-	int i;
+    int i;
+    int j;
 
 	i = 0;
+    j = 0;
 	while (i < carte->height)
 	{
-		for (int j = 0; j < carte->width; j++)
-			printf("%d,%d,%d ", (carte->matrix[i][j]).x, (carte->matrix[i][j]).y, (carte->matrix[i][j]).z);
+		j = 0;
+        while (j < carte->width)
+        {
+			printf("%3d", (carte->matrix[i][j]).z);
+            j++;
+        }
 		i++;
 		printf("\n");
 	}
@@ -107,6 +113,4 @@ void get_map_infos(map *carte, char *filename)
 		i++;
 	}
 	printf("carte width : %d\t, carte height : %d\n", carte->width, carte->height);
-	fill_the_matrix(carte, filename);
-	display_map(carte);
 }

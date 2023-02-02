@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/02 12:57:34 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 13:37:55 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void initialize_map(map *carte)
 	carte->height = 0;
 	carte->width = 0;
 	
-	// carte->matrix = NULL;
+	carte->matrix = NULL;
 	carte->scale = 8;
 
 	carte->translate_x = 0;
@@ -37,8 +37,29 @@ void initialize_map(map *carte)
 
 	carte->z1 = 0;
 	carte->z2 = 0;
+}
 
-    // carte->matrix = NULL;
+void initialize_matrix(map *carte)
+{
+    int i;
+    int j;
+
+	i = 0;
+    j = 0;
+	while (i < carte->height)
+	{
+		j = 0;
+        while (j < carte->width)
+        {
+            (carte->matrix[i][j]).x = 0;
+            (carte->matrix[i][j]).y = 0;
+            (carte->matrix[i][j]).z = 0;
+            (carte->matrix[i][j]).color_z = 0;
+            j++;
+        }
+		i++;
+		printf("\n");
+	}
 }
 
 void translation(int keycode, map *carte)
@@ -53,14 +74,14 @@ void translation(int keycode, map *carte)
         carte->translate_y += 35;
     if (keycode == 126)
         carte->translate_y -= 35;
-    if (keycode == 6)
+    if (keycode == 6) // z
         carte->translate_z += 35;
-    if (keycode == 7)
+    if (keycode == 7) // x
         carte->translate_z -= 35;
     if (keycode == 69)
-        carte->scale += 5;
+        carte->scale += 5; //+
     if (keycode == 78)
-        carte->scale -= 5;
+        carte->scale -= 5; //-
     if (keycode == 8) //c
         carte->tz += 2;
     if (keycode == 9) //v
@@ -89,7 +110,12 @@ int main(int argc, char **argv)
     initialize_map(&carte);
     file_error(argc, argv);
     get_map_infos(&carte, argv[1]);
+    
+    initialize_matrix(&carte);
+	fill_the_matrix(&carte, argv[1]);
+	display_map(&carte);
 
+    
     connect_dots(&carte);
     mlx_key_hook(carte.win_ptr, key_hook, &carte); // esc key press event
     mlx_loop(carte.mlx_ptr);

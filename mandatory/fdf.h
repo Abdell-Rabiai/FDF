@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/02 13:16:03 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 13:38:22 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct my_map
 	int color;
 } map;
 
-
+void display_map(map *carte); /*should be remved later*/
 
 
 void	get_map_infos(map *carte, char *filename);

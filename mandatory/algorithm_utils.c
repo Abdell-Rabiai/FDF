@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/02 13:15:51 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 13:45:10 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void scale(int *x1, int *y1, int *x2, int *y2, map *carte)
 	*y2 = *y2 * carte->scale;
 }
 
-void scale_z(map *carte)
+void move_the_roof(map *carte)
 {
 	carte->z1  += carte->translate_z;
 	carte->z2  += carte->translate_z;
@@ -52,8 +52,10 @@ void z_color(int x1, int y1, int x2, int y2, map *carte)
 	z2 = carte->matrix[y2][x2].z;
 	if (z1 != 0 || z2 != 0)
 	{
-		scale_z(carte);
+		move_the_roof(carte);
+			// if ((carte->matrix[y1][x1]).color_z == 0)
 		(carte->matrix[y1][x1]).color_z = 0xff427b;
+			// if ((carte->matrix[y2][x2]).color_z == 0)
         (carte->matrix[y2][x2]).color_z = 0xff427b;
 	}
 	else
@@ -63,16 +65,21 @@ void z_color(int x1, int y1, int x2, int y2, map *carte)
     }
 }
 
-void draw_bresenhams_line(int x1, int y1, int x2, int y2, map *carte)
+void scale_z(map *carte, int x1, int y1, int x2, int y2)
 {
 	carte->z1 = carte->matrix[y1][x1].z;
 	carte->z2 = carte->matrix[y2][x2].z;
 
 	carte->z1  *= carte->tz;
-	carte->z2  *= carte->tz;
-	
+	carte->z2  *= carte->tz;	
+}
+
+void draw_bresenhams_line(int x1, int y1, int x2, int y2, map *carte)
+{
+	scale_z(carte, x1, y1, x2, y2);
 	z_color(x1, y1, x2, y2, carte);
 	carte->color = (carte->matrix[y1][x1]).color_z;
+	// carte->color = (carte->matrix[y2][x2]).color_z;
 	scale(&x1, &y1, &x2, &y2, carte);
 	isometric_projection(&x1, &y1, &x2, &y2, carte->z1, carte->z2);
 	shift_x_y(&x1, &y1, &x2, &y2, carte);

@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/30 18:51:09 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 12:55:04 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void display_map(map *carte)
 	while (i < carte->height)
 	{
 		for (int j = 0; j < carte->width; j++)
-			printf("%3d", carte->matrice[i][j]);
+			printf("%d,%d,%d ", (carte->matrix[i][j]).x, (carte->matrix[i][j]).y, (carte->matrix[i][j]).z);
 		i++;
 		printf("\n");
 	}
@@ -92,14 +92,17 @@ void get_map_infos(map *carte, char *filename)
 	get_map_dimensions(filename, carte);
 
 	if (carte->width <= 0 || carte->height <= 0)
-		ft_printf("ERROR : incorrect heght and width values of the file\n");	
-	carte->matrice = (int **)malloc(sizeof(int *) * (carte->height + 1));
-	if(!carte->matrice)
+		ft_printf("ERROR : incorrect heght and width values of the file\n");
+	carte->matrix = (my_matrice **)malloc(sizeof(my_matrice *) * carte->height + 1);	
+	// carte->matrice = (int **)malloc(sizeof(int *) * (carte->height + 1));
+	if(!carte->matrix)
 		perror("ERROR allocating memory for the map\n");
 	while (i < carte->height)
 	{
-		carte->matrice[i] = (int *)malloc(sizeof(int) * (carte->width));
-		if (!carte->matrice[i])
+		// carte->matrice[i] = (int *)malloc(sizeof(int) * (carte->width));
+		carte->matrix[i] = (my_matrice *)malloc(sizeof(my_matrice) * carte->width);
+		// if (!carte->matrice[i])
+		if (!carte->matrix[i])
 			perror("ERROR allocating memory for map rows");
 		i++;
 	}

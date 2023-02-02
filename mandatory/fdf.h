@@ -6,22 +6,45 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/31 22:25:15 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 13:16:03 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-#define HEIGHT 1000
-#define WIDTH 1500
+#define HEIGHT 1500
+#define WIDTH 3000
 
 #include <mlx.h>
 #include "../get_next_line/get_next_line.h"
 #include "../ft_printf/ft_printf.h"
 #include "../libft_utils/libft_utils.h"
-typedef struct bresenham
+
+typedef struct x_y_z_color
 {
+	int x;
+	int y;
+	int z;
+	int color_z;
+} my_matrice;
+
+typedef struct my_map
+{
+	int height;
+	int width;
+	
+	my_matrice **matrix;
+	int scale;
+
+	int translate_x;
+	int translate_y;
+	int translate_z;
+	int tz;
+	
+	void *mlx_ptr;
+	void *win_ptr;
+	
 	int dx;
 	int dy;
 	int err;
@@ -31,25 +54,10 @@ typedef struct bresenham
 
 	int z1;
 	int z2;
-	int color_z;
-} bresenham;
-
-typedef struct my_map
-{
-	int height;
-	int width;
-	
-	int **matrice;
-	int scale;
-
-	int translate_x;
-	int translate_y;
-	int translate_z;
-	
-	void *mlx_ptr;
-	void *win_ptr;
-	bresenham *bres;
+	int color;
 } map;
+
+
 
 
 void	get_map_infos(map *carte, char *filename);

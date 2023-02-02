@@ -6,28 +6,66 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/31 22:28:37 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 12:57:34 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "fdf.h"
 
-void translation(int keycode, map *carte, bresenham *bres)
+void initialize_map(map *carte)
+{
+	carte->height = 0;
+	carte->width = 0;
+	
+	// carte->matrix = NULL;
+	carte->scale = 8;
+
+	carte->translate_x = 0;
+	carte->translate_y = 0;
+	carte->translate_z = 0;
+    carte->tz = 1;
+	
+    carte->mlx_ptr = mlx_init();
+    carte->win_ptr = mlx_new_window(carte->mlx_ptr, WIDTH, HEIGHT, "fill de fer");
+	
+	carte->dx = 0;
+	carte->dy = 0;
+	carte->err = 0;
+	carte->step_x = 0;
+	carte->step_y = 0;
+	carte->e2 = 0;
+
+	carte->z1 = 0;
+	carte->z2 = 0;
+
+    // carte->matrix = NULL;
+}
+
+void translation(int keycode, map *carte)
 {
     /*124 right 125 down 123 left 126* up*/ 
     printf("%d\n", keycode);
     if (keycode == 123)
-        carte->translate_x -= 10;
-    else if (keycode == 124)
-        carte->translate_x += 10;
-    else if (keycode == 125)
-        carte->translate_y -= 10;
-    else if (keycode == 126)
-        carte->translate_y += 10;
-    else
-        return ;
-    (void) bres;
-    // mlx_clear_window(carte->mlx_ptr, carte->win_ptr);
+        carte->translate_x -= 35;
+    if (keycode == 124)
+        carte->translate_x += 35;
+    if (keycode == 125)
+        carte->translate_y += 35;
+    if (keycode == 126)
+        carte->translate_y -= 35;
+    if (keycode == 6)
+        carte->translate_z += 35;
+    if (keycode == 7)
+        carte->translate_z -= 35;
+    if (keycode == 69)
+        carte->scale += 5;
+    if (keycode == 78)
+        carte->scale -= 5;
+    if (keycode == 8) //c
+        carte->tz += 2;
+    if (keycode == 9) //v
+        carte->tz -= 2;
+    mlx_clear_window(carte->mlx_ptr, carte->win_ptr);
     connect_dots(carte);
 }
 
@@ -40,9 +78,7 @@ int key_hook(int keycode, map *carte)
 		exit(0);
 	}
     else
-    // printf("color_z : %d\n", bres->color_z);
-        translation(keycode, carte, carte->bres);
-    //    mlx_clear_window(carte->mlx_ptr, carte->win_ptr);
+        translation(keycode, carte);
 	return (0);
 }
 
@@ -50,16 +86,11 @@ int main(int argc, char **argv)
 {
     map carte;
 
+    initialize_map(&carte);
     file_error(argc, argv);
     get_map_infos(&carte, argv[1]);
-    
-    carte.mlx_ptr = mlx_init();
-    printf("HELLO 0\n");
-    carte.win_ptr = mlx_new_window(carte.mlx_ptr, WIDTH, HEIGHT, "fill de fer");
-    carte.scale = 20;
-    
+
     connect_dots(&carte);
-    printf("HELLO 1\n");
     mlx_key_hook(carte.win_ptr, key_hook, &carte); // esc key press event
     mlx_loop(carte.mlx_ptr);
 	return (0);

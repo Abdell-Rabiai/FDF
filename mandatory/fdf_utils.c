@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:29:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/28 08:56:05 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 12:54:51 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void fill_the_matrix(map *carte, char *filename)
 	j = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		perror("ERROR  ");
+		perror("ERROR  !!");
 	while (i < carte->height )
 	{
 		line = get_next_line(fd);
@@ -32,13 +32,15 @@ void fill_the_matrix(map *carte, char *filename)
 		j = 0;
 		while (j < carte->width)
 		{
-			carte->matrice[i][j] = ft_atoi(numbers[j]);
+			(carte->matrix[i][j]).z = ft_atoi(numbers[j]);
+			(carte->matrix[i][j]).x = j;
+			(carte->matrix[i][j]).y = i;
 			j++;
 		}
 		free(line);
 		ft_free_split(numbers);
 		i++;
 	}
-	carte->matrice[i] = NULL;
+	carte->matrix[i] = NULL;
 	close(fd);
 }

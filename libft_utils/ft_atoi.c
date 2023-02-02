@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:48:25 by arabiai           #+#    #+#             */
-/*   Updated: 2023/01/27 23:51:19 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/02 21:15:31 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,46 @@ int ft_atoi(const char *str)
 			return (-1);
 		if (sign < 0 && res >= 9223372036854775808UL)
 			return (0);
+		str++;
+	}
+	return (res * sign);
+}
+
+int	get_index_base(int c, int base)
+{
+	char *str = "0123456789abcdef";
+	char *str2 = "0123456789ABCDEF";
+	int  i = 0;
+
+	while (i < base)
+	{
+		if (c == str[i] || c == str2[i])
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int ft_atohex(const char *str)
+{
+	int sign;
+	long double res;
+
+	sign = 1;
+	res = 0;
+	while (*str && ft_iswspace(*str))
+		str++;
+	if (*str == '-')
+	{
+		sign *= -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	while (*str) // "15"
+	{
+		res *= 16;
+		res += get_index_base(*str, 16);
 		str++;
 	}
 	return (res * sign);

@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/02 13:37:55 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/03 16:05:37 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void initialize_matrix(map *carte)
             (carte->matrix[i][j]).x = 0;
             (carte->matrix[i][j]).y = 0;
             (carte->matrix[i][j]).z = 0;
-            (carte->matrix[i][j]).color_z = 0;
+            (carte->matrix[i][j]).color_z = -1;
             j++;
         }
 		i++;

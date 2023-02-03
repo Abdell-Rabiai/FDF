@@ -6,15 +6,15 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/02 13:38:22 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/03 20:21:13 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-#define HEIGHT 1500
-#define WIDTH 3000
+#define HEIGHT 1000
+#define WIDTH 900
 
 #include <mlx.h>
 #include "../get_next_line/get_next_line.h"

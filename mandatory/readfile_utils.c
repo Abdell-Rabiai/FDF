@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/02 13:37:12 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/03 17:21:23 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void get_map_infos(map *carte, char *filename)
 
 	if (carte->width <= 0 || carte->height <= 0)
 		ft_printf("ERROR : incorrect heght and width values of the file\n");
-	carte->matrix = (my_matrice **)malloc(sizeof(my_matrice *) * carte->height + 1);	
+	carte->matrix = (my_matrice **)malloc(sizeof(my_matrice *) * carte->height);	
 	// carte->matrice = (int **)malloc(sizeof(int *) * (carte->height + 1));
 	if(!carte->matrix)
 		perror("ERROR allocating memory for the map\n");

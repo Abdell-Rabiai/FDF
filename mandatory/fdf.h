@@ -6,15 +6,15 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/03 20:21:13 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/04 13:11:32 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-#define HEIGHT 1000
-#define WIDTH 900
+#define HEIGHT 2790/2
+#define WIDTH 5120/2
 
 #include <mlx.h>
 #include "../get_next_line/get_next_line.h"
@@ -41,6 +41,9 @@ typedef struct my_map
 	int translate_y;
 	int translate_z;
 	int tz;
+	int bool_flat;
+	int make_it_colorful;
+	int get_colors_from_map;
 	
 	void *mlx_ptr;
 	void *win_ptr;
@@ -59,6 +62,7 @@ typedef struct my_map
 
 void display_map(map *carte); /*should be remved later*/
 
+void initialize_colors(map *carte);
 
 void	get_map_infos(map *carte, char *filename);
 void	get_map_dimensions(char *filename, map *carte);

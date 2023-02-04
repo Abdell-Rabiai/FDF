@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/03 20:27:54 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/04 13:08:42 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void move_the_roof(map *carte)
 
 void isometric_projection(int *x1, int *y1, int *x2, int *y2, int z1, int z2)
 {
-	*x1 = (*x1 - *y1) * cos(0.79);
-	*y1 = (*x1 + *y1) * sin(0.79) - z1;
-	*x2 = (*x2 - *y2) * cos(0.79);
-	*y2 = (*x2 + *y2) * sin(0.79) - z2;
+	*x1 = (*x1 - *y1) * cos(0.8);
+	*y1 = (*x1 + *y1) * sin(0.8) - z1;
+	*x2 = (*x2 - *y2) * cos(0.8);
+	*y2 = (*x2 + *y2) * sin(0.8) - z2;
 }
 
 void shift_x_y(int *x1, int *y1, int *x2, int *y2, map *carte)
@@ -53,15 +53,13 @@ void z_color(int x1, int y1, int x2, int y2, map *carte)
 	if (z2 != 0 || z1 != 0)
 	{
 		move_the_roof(carte);
-		if ((carte->matrix[y1][x1]).color_z ==  0xffffff || (carte->matrix[y2][x2]).color_z == 0xffffff)
-			(carte->matrix[y1][x1]).color_z = 0xff427b; // red
-        	(carte->matrix[y2][x2]).color_z = 0xff427b;
+		(carte->matrix[y1][x1]).color_z = 0xff427b; // red
+		(carte->matrix[y2][x2]).color_z = 0xff427b;
 	}
 	else
     {
-		 if ((carte->matrix[y1][x1]).color_z == 0xffffff || (carte->matrix[y2][x2]).color_z == 0xffffff)
-    		(carte->matrix[y1][x1]).color_z = 0x4ae2ed; // blue
-       		(carte->matrix[y2][x2]).color_z = 0x4ae2ed;
+		(carte->matrix[y1][x1]).color_z = 0x4ae2ed; // blue
+		(carte->matrix[y2][x2]).color_z = 0x4ae2ed;
     }
 }
 
@@ -74,22 +72,27 @@ void scale_z(map *carte, int x1, int y1, int x2, int y2)
 	carte->z2  *= carte->tz;	
 }
 
-void draw_bresenhams_line(int x1, int y1, int x2, int y2, map *carte)
-{
-	scale_z(carte, x1, y1, x2, y2);
-	
-	z_color(x1, y1, x2, y2, carte);
-	carte->color = (carte->matrix[y1][x1]).color_z;
-	
-	scale(&x1, &y1, &x2, &y2, carte);
-	isometric_projection(&x1, &y1, &x2, &y2, carte->z1, carte->z2);
-	shift_x_y(&x1, &y1, &x2, &y2, carte);
-	
+void initialize_bresenhams_variables(int x1, int y1, int x2, int y2, map *carte)
+{	
 	carte->dx = abs(x2 - x1);
 	carte->dy = -abs(y2 - y1);
 	carte->step_x = x1 < x2 ? 1 : -1;
 	carte->step_y = y1 < y2 ? 1 : -1;
 	carte->err = carte->dx + carte->dy;
+}
+
+void draw_bresenhams_line(int x1, int y1, int x2, int y2, map *carte)
+{
+	scale_z(carte, x1, y1, x2, y2);
+	if (carte->make_it_colorful == 0)
+		z_color(x1, y1, x2, y2, carte);
+	carte->color = (carte->matrix[y1][x1]).color_z;
+	
+	scale(&x1, &y1, &x2, &y2, carte);
+	if (carte->bool_flat == 1)
+		isometric_projection(&x1, &y1, &x2, &y2, carte->z1, carte->z2);
+	shift_x_y(&x1, &y1, &x2, &y2, carte);
+	initialize_bresenhams_variables(x1, y1, x2, y2, carte);
 	while (1)
 	{
 		mlx_pixel_put(carte->mlx_ptr, carte->win_ptr, x1, y1, carte->color);

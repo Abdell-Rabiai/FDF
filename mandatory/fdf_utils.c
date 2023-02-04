@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:29:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/03 19:50:49 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/04 14:28:49 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ int get_color(char *str) // (1522,0x125as0d)
 	return (ft_atohex(str));
 }
 
+void assign_xyzcolor(char *numbers, map *carte, int i, int j)
+{
+	if(ft_strchar(numbers, ','))
+		(carte->matrix[i][j]).color_z = get_color(numbers);
+	(carte->matrix[i][j]).z = ft_atoi(numbers);
+	(carte->matrix[i][j]).y = i;
+	(carte->matrix[i][j]).x = j;
+}
+
 void fill_the_matrix(map *carte, char *filename)
 {
 	int i;
@@ -44,34 +53,22 @@ void fill_the_matrix(map *carte, char *filename)
 	char *line;
 	char **numbers;
 
-	i = 0;
-	j = 0;
+	i = -1;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		perror("ERROR  !!");
-	while (i < carte->height )
+	while (++i < carte->height )
 	{
 		line = get_next_line(fd);
 		numbers = ft_split(line, ' ');
 		j = 0;
 		while (numbers[j] && j < carte->width)
 		{
-			if(ft_strchar(numbers[j], ','))
-				(carte->matrix[i][j]).color_z = get_color(numbers[j]);
-			else
-				carte->matrix[i][j].color_z = 0xffffff;
-			(carte->matrix[i][j]).z = ft_atoi(numbers[j]);
-			(carte->matrix[i][j]).y = i;
-			(carte->matrix[i][j]).x = j;
+			assign_xyzcolor(numbers[j], carte, i, j);
 			j++;
 		}
 		free(line);
 		ft_free_split(numbers);
-		i++;
 	}
 	close(fd);
 }
-
-// int main(){
-// 	printf("%d\n%x\n", get_color("1254,0x125a0d"), 1202701);
-// }

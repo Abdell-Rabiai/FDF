@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/04 14:29:59 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/10 20:01:07 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void initialize_map(map *carte)
 	carte->translate_x = 0;
 	carte->translate_y = 0;
 	carte->translate_z = 0;
+
+	carte->rotate_x = 0;
+	carte->rotate_y = 0;
+	carte->rotate_z = 0;
+
 	carte->tz = 1;
 	carte->bool_flat = 1;
 	carte->make_it_colorful = 1;
@@ -121,6 +126,19 @@ void translation(int keycode, map *carte)
 			carte->make_it_colorful = 0;
 		initialize_colors(carte);
 	}
+
+	if (keycode == 91) //8
+		carte->rotate_x += 1;
+	if (keycode == 84) // 2
+		carte->rotate_x -= 1;
+	if (keycode == 86) //4
+		carte->rotate_y += 1;
+	if (keycode == 88) //6
+		carte->rotate_y -= 1;
+	if (keycode == 92) //9
+		carte->rotate_z += 1;
+	if (keycode == 83) //1
+		carte->rotate_z -= 1;
 	mlx_clear_window(carte->mlx_ptr, carte->win_ptr);
 	connect_dots(carte);
 }
@@ -141,14 +159,14 @@ int key_hook(int keycode, map *carte)
 int main(int argc, char **argv)
 {
 	map carte;
-
+	(void)argc;
 	initialize_map(&carte);
-	file_error(argc, argv);
+	// file_error(argc, argv);
 	get_map_infos(&carte, argv[1]);
 	
 	initialize_matrix(&carte);
 	fill_the_matrix(&carte, argv[1]);
-	display_map(&carte);
+	// display_map(&carte);
 
 	
 	connect_dots(&carte);

@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/04 13:11:32 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/10 19:21:38 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #define HEIGHT 2790/2
 #define WIDTH 5120/2
+#define M_PI 3.14159265358979323846
 
 #include <mlx.h>
 #include "../get_next_line/get_next_line.h"
@@ -40,6 +41,11 @@ typedef struct my_map
 	int translate_x;
 	int translate_y;
 	int translate_z;
+
+	int rotate_x;
+	int rotate_y;
+	int rotate_z;
+
 	int tz;
 	int bool_flat;
 	int make_it_colorful;

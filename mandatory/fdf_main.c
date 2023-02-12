@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/10 20:01:07 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/12 14:44:30 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int main(int argc, char **argv)
 	map carte;
 	(void)argc;
 	initialize_map(&carte);
-	// file_error(argc, argv);
+	file_error(argc, argv);
 	get_map_infos(&carte, argv[1]);
 	
 	initialize_matrix(&carte);

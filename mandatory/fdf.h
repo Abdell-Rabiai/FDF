@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/10 19:21:38 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/12 14:46:48 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #define HEIGHT 2790/2
 #define WIDTH 5120/2
-#define M_PI 3.14159265358979323846
+#define PI 3.14159265358979323846
 
 #include <mlx.h>
 #include "../get_next_line/get_next_line.h"

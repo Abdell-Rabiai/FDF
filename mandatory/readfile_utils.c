@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/03 17:21:23 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/12 13:25:14 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void display_map(map *carte)
 {
-    int i;
-    int j;
+	int i;
+	int j;
 
 	i = 0;
-    j = 0;
+	j = 0;
 	while (i < carte->height)
 	{
 		j = 0;
-        while (j < carte->width)
-        {
+		while (j < carte->width)
+		{
 			printf("%3d", (carte->matrix[i][j]).z);
-            j++;
-        }
+			j++;
+		}
 		i++;
 		printf("\n");
 	}
@@ -50,16 +50,16 @@ void file_error(int argc, char **argv)
 	int fd;
 
 	if (argc != 2)
-    {
-        ft_printf("ERROR : invalid number of arguments.\n");
-        ft_printf("USAGE : ./fdf map.fdf \n");
-        exit(EXIT_FAILURE);
-    }
-    if (check_file_format(argv[1]) == 0)
-    {
-        ft_printf("EROOR : incorrect file format\nit should be *.fdf\n");
-        exit(EXIT_FAILURE);
-    }
+	{
+		ft_printf("ERROR : invalid number of arguments.\n");
+		ft_printf("USAGE : ./fdf map.fdf \n");
+		exit(EXIT_FAILURE);
+	}
+	if (check_file_format(argv[1]) == 0)
+	{
+		ft_printf("EROOR : incorrect file format\nit should be *.fdf\n");
+		exit(EXIT_FAILURE);
+	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
@@ -70,11 +70,10 @@ void file_error(int argc, char **argv)
 
 void get_map_dimensions(char *filename, map *carte)
 {
-	int i;
+	int i = 0;
 	int fd;
 	char *line;
 
-	i = 0;
 	fd = open(filename, O_RDONLY, 0);
 	if (fd < 0)
 		perror("EROOR ");
@@ -92,9 +91,7 @@ void get_map_dimensions(char *filename, map *carte)
 
 void get_map_infos(map *carte, char *filename)
 {
-	int i;
-
-	i = 0;
+	int i = 0;
 	get_map_dimensions(filename, carte);
 
 	if (carte->width <= 0 || carte->height <= 0)

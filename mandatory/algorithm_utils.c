@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/10 20:39:02 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/12 14:46:40 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,12 @@ void initialize_bresenhams_variables(int x1, int y1, int x2, int y2, map *carte)
 void rotate_xyz(int *x1, int *y1, int *x2, int *y2, int *z1, int *z2, map *carte)
 {
 	
-	rotate_x(y1, z1, M_PI / 6 * carte->rotate_x);
-	rotate_x(y2, z2, M_PI / 6 * carte->rotate_x);
-	rotate_y(x1, z1, M_PI / 6 * carte->rotate_y);
-	rotate_y(x2, z2, M_PI / 6 * carte->rotate_y);
-	rotate_z(x1, y1, M_PI / 6 * carte->rotate_z, carte);
-	rotate_z(x2, y2, M_PI / 6 * carte->rotate_z, carte);
+	rotate_x(y1, z1, PI / 6 * carte->rotate_x);
+	rotate_x(y2, z2, PI / 6 * carte->rotate_x);
+	rotate_y(x1, z1, PI / 6 * carte->rotate_y);
+	rotate_y(x2, z2, PI / 6 * carte->rotate_y);
+	rotate_z(x1, y1, PI / 6 * carte->rotate_z, carte);
+	rotate_z(x2, y2, PI / 6 * carte->rotate_z, carte);
 
 }
 

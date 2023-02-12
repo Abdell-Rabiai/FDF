@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 23:29:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/04 14:28:49 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/12 14:43:38 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int	ft_strchar(char *string, char c)
 
 int get_color(char *str) // (1522,0x125as0d)
 {
-	int i;
-
-	i = 0;
 	while (*str >= '0' && *str <= '9')
 		str++;
 	while(*str == ',' || *str == '0' || *str == 'x')

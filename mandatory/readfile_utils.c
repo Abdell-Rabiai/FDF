@@ -6,16 +6,16 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/12 13:25:14 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/13 14:18:46 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void display_map(map *carte)
+void	display_map(t_map *carte)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -32,22 +32,22 @@ void display_map(map *carte)
 	}
 }
 
-int check_file_format(char *filename)
+int	check_file_format(char *filename)
 {
-	char *extension;
+	char	*extension;
 
 	extension = ft_strrchr(filename, '.');
 	if (extension == NULL)
 		return (0);
 	if (ft_strncmp(extension, ".fdf", ft_strlen(extension)) == 0)
 		return (1);
-	else 
+	else
 		return (0);
 }
 
-void file_error(int argc, char **argv)
+void	file_error(int argc, char **argv)
 {
-	int fd;
+	int	fd;
 
 	if (argc != 2)
 	{
@@ -68,12 +68,13 @@ void file_error(int argc, char **argv)
 	}
 }
 
-void get_map_dimensions(char *filename, map *carte)
+void	get_map_dimensions(char *filename, t_map *carte)
 {
-	int i = 0;
-	int fd;
-	char *line;
+	int		i;
+	int		fd;
+	char	*line;
 
+	i = 0;
 	fd = open(filename, O_RDONLY, 0);
 	if (fd < 0)
 		perror("EROOR ");
@@ -89,25 +90,26 @@ void get_map_dimensions(char *filename, map *carte)
 	carte->height = i;
 }
 
-void get_map_infos(map *carte, char *filename)
+void	get_map_infos(t_map *carte, char *filename)
 {
-	int i = 0;
-	get_map_dimensions(filename, carte);
+	int	i;
 
+	i = 0;
+	get_map_dimensions(filename, carte);
 	if (carte->width <= 0 || carte->height <= 0)
 		ft_printf("ERROR : incorrect heght and width values of the file\n");
-	carte->matrix = (my_matrice **)malloc(sizeof(my_matrice *) * carte->height);	
-	// carte->matrice = (int **)malloc(sizeof(int *) * (carte->height + 1));
-	if(!carte->matrix)
+	carte->matrix = (t_matrice **)malloc(sizeof(t_matrice *)
+			* carte->height);
+	if (!carte->matrix)
 		perror("ERROR allocating memory for the map\n");
 	while (i < carte->height)
 	{
-		// carte->matrice[i] = (int *)malloc(sizeof(int) * (carte->width));
-		carte->matrix[i] = (my_matrice *)malloc(sizeof(my_matrice) * carte->width);
-		// if (!carte->matrice[i])
+		carte->matrix[i] = (t_matrice *)malloc(sizeof(t_matrice)
+				* carte->width);
 		if (!carte->matrix[i])
 			perror("ERROR allocating memory for map rows");
 		i++;
 	}
-	printf("carte width : %d\t, carte height : %d\n", carte->width, carte->height);
+	ft_printf("carte width : %d\t, carte height : %d\n",
+		carte->width, carte->height);
 }

@@ -6,137 +6,34 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/12 22:48:00 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/13 16:42:44 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <math.h>
 
-void scale(map *carte)
+void	initialize_bresenhams_variables(t_map *carte)
 {
-	// *x1 = *x1 * carte->scale;
-	carte->pline->x1 *= carte->scale;
-	// *x2 = *x2 * carte->scale;
-	carte->pline->x2 *= carte->scale;
-	// *y1 = *y1 * carte->scale;
-	carte->pline->y1 *= carte->scale;
-	// *y2 = *y2 * carte->scale;
-	carte->pline->y2 *= carte->scale;
-}
-
-void move_the_roof(map *carte)
-{
-	carte->z1  += carte->translate_z;
-	carte->z2  += carte->translate_z;
-}
-
-void isometric_projection(/*int *x1, int *y1, int *x2, int *y2, int z1, int z2, */map *carte)
-{
-	// *x1 = (*x1 - *y1) * cos(0.8);
-	carte->pline->x1 = ( carte->pline->x1 - carte->pline->y1 ) * cos(0.8);
-	// *y1 = (*x1 + *y1) * sin(0.8) - z1;
-	carte->pline->y1 = ( carte->pline->x1 + carte->pline->y1 ) * cos(0.8) - carte->z1;
-	// *x2 = (*x2 - *y2) * cos(0.8);
-	carte->pline->x2 = ( carte->pline->x2 - carte->pline->y2 ) * cos(0.8);
-	// *y2 = (*x2 + *y2) * sin(0.8) - z2;
-	carte->pline->y2 = ( carte->pline->x2 + carte->pline->y2 ) * cos(0.8) - carte->z2;
-}
-
-void	rotate_x(int *y, int *z, double alpha)
-{
-	int	prev_y;
-
-	prev_y =  * y ; 
-	* y = prev_y *  cos ( alpha )  +  ( * z )  *  sin ( alpha ) ; 
-	* z =  - prev_y *  sin ( alpha )  +  ( * z )  *  cos ( alpha ) ; 
-}
-
-void	rotate_y(int *x, int *z, double beta)
-{
-	int	prev_x;
-
-	prev_x = *x;
-	*x = prev_x * cos(beta) + (*z) * sin(beta);
-	*z = -prev_x * sin(beta) + (*z) * cos(beta);
-}
-
-void	rotate_z(int *x, int *y, double gamma, map *carte)
-{
-	int	prev_x;
-	int	prev_y;
-
-	prev_x =  *x;
-	prev_y =  *y;
-	if (gamma != 0)
-	{
-		prev_x -= (carte->width*carte->scale)/2;
-		prev_y -= (carte->height*carte->scale)/2;
-	}
-	*x = prev_x *  cos (gamma) - prev_y * sin (gamma) ; 
-	*y = prev_x *  sin (gamma) + prev_y * cos (gamma) ; 
-}
-
-void shift_x_y(/*int *x1, int *y1, int *x2, int *y2, */map *carte)
-{
-	carte->pline->x1 += WIDTH/2 - (carte->width*carte->scale)/2 + carte->translate_x;
-	carte->pline->x2 += WIDTH/2 - (carte->width*carte->scale)/2 + carte->translate_x;
-	carte->pline->y1 += HEIGHT/2 - (carte->height*carte->scale)/2 + carte->translate_y;
-	carte->pline->y2 += HEIGHT/2 - (carte->height*carte->scale)/2 + carte->translate_y;
-}
-
-void z_color(map *carte)
-{
-	int z1;
-	int z2;
-
-	z1 = carte->matrix[carte->pline->y1][carte->pline->x1].z;
-	z2 = carte->matrix[carte->pline->y2][carte->pline->x2].z;
-	if (z2 != 0 || z1 != 0)
-	{
-		move_the_roof(carte);
-		(carte->matrix[carte->pline->y1][carte->pline->x1]).color_z = 0xff427b; // red
-		(carte->matrix[carte->pline->y2][carte->pline->x2]).color_z = 0xff427b;
-	}
-	else
-    {
-		(carte->matrix[carte->pline->y1][carte->pline->x1]).color_z = 0x4ae2ed; // blue
-		(carte->matrix[carte->pline->y2][carte->pline->x2]).color_z = 0x4ae2ed;
-    }
-}
-
-void scale_z(map *carte)
-{
-	carte->z1 = carte->matrix[carte->pline->y1][carte->pline->x1].z;
-	carte->z2 = carte->matrix[carte->pline->y2][carte->pline->x2].z;
-
-	carte->z1  *= carte->tz;
-	carte->z2  *= carte->tz;	
-}
-
-void initialize_bresenhams_variables(map *carte)
-{	
 	carte->dx = abs(carte->pline->x2 - carte->pline->x1);
 	carte->dy = -abs(carte->pline->y2 - carte->pline->y1);
-	carte->step_x = carte->pline->x1 < carte->pline->x2 ? 1 : -1;
-	carte->step_y = carte->pline->y1 < carte->pline->y2 ? 1 : -1;
+	if (carte->pline->x1 < carte->pline->x2)
+		carte->step_x = 1;
+	else
+		carte->step_x = -1;
+	if (carte->pline->y1 < carte->pline->y2)
+		carte->step_y = 1;
+	else
+		carte->step_y = -1;
 	carte->err = carte->dx + carte->dy;
 }
 
-void rotate_xyz(int *z1, int *z2, map *carte)
+void	all_the_stuff_before_bresenhams(t_map *carte)
 {
-	rotate_x(&carte->pline->y1, z1, PI / 6 * carte->rotate_x);
-	rotate_x(&carte->pline->y2, z2, PI / 6 * carte->rotate_x);
-	rotate_y(&carte->pline->x1, z1, PI / 6 * carte->rotate_y);
-	rotate_y(&carte->pline->x2, z2, PI / 6 * carte->rotate_y);
-	rotate_z(&carte->pline->x1, &carte->pline->y1, PI / 6 * carte->rotate_z, carte);
-	rotate_z(&carte->pline->x2, &carte->pline->y2, PI / 6 * carte->rotate_z, carte);
-}
+	int	z1;
+	int	z2;
 
-void draw_bresenhams_line(map *carte)
-{
-	int z1 = (carte->matrix[carte->pline->y1][carte->pline->x1]).z;
-	int z2 = (carte->matrix[carte->pline->y2][carte->pline->x2]).z;
+	z1 = (carte->matrix[carte->pline->y1][carte->pline->x1]).z;
+	z2 = (carte->matrix[carte->pline->y2][carte->pline->x2]).z;
 	scale_z(carte);
 	if (carte->make_it_colorful == 0)
 		z_color(carte);
@@ -146,12 +43,19 @@ void draw_bresenhams_line(map *carte)
 	if (carte->bool_flat == 1)
 		isometric_projection(carte);
 	shift_x_y(carte);
+}
+
+void	draw_bresenhams_line(t_map *carte)
+{
+	all_the_stuff_before_bresenhams(carte);
 	initialize_bresenhams_variables(carte);
 	while (1)
 	{
-		mlx_pixel_put(carte->mlx_ptr, carte->win_ptr, carte->pline->x1, carte->pline->y1, carte->color);
-		if (carte->pline->x1 == carte->pline->x2 && carte->pline->y1 == carte->pline->y2)
-			break;
+		mlx_pixel_put(carte->mlx_ptr, carte->win_ptr, carte->pline->x1,
+			carte->pline->y1, carte->color);
+		if (carte->pline->x1 == carte->pline->x2
+			&& carte->pline->y1 == carte->pline->y2)
+			break ;
 		carte->e2 = 2 * carte->err;
 		if (carte->e2 >= carte->dy)
 		{
@@ -161,47 +65,28 @@ void draw_bresenhams_line(map *carte)
 		else if (carte->e2 <= carte->dx)
 		{
 			carte->err = carte->err + carte->dx;
-			carte->pline->y1 =  carte->pline->y1 + carte->step_y;
+			carte->pline->y1 = carte->pline->y1 + carte->step_y;
 		}
 	}
 }
 
-void helper_x(map *carte, int i, int j)
+void	connect_dots(t_map *carte)
 {
-	carte->pline->x1 = (carte->matrix[i][j]).x;
-	carte->pline->y1 = (carte->matrix[i][j]).y;
+	int	i;
+	int	j;
 
-	carte->pline->x2 = (carte->matrix[i][j]).x + 1;
-	carte->pline->y2 = (carte->matrix[i][j]).y;	
-	draw_bresenhams_line(carte);
-}
-
-void helper_y(map *carte, int i, int j)
-{
-	carte->pline->x1 = (carte->matrix[i][j]).x;
-	carte->pline->y1 = (carte->matrix[i][j]).y;
-
-	carte->pline->x2 = (carte->matrix[i][j]).x;
-	carte->pline->y2 = (carte->matrix[i][j]).y + 1;	
-	draw_bresenhams_line(carte);
-}
-
-void connect_dots(map *carte)
-{
-	int i;
-	int j;
-
-	j = 0;
 	i = 0;
+	if (carte->show_guid == 1)
+		put_strings(carte);
 	while (i < carte->height)
 	{
 		j = 0;
 		while (j < carte->width)
 		{
 			if (j < carte->width - 1)
-				helper_x(carte, i, j);
+				draw_from_x_to_x1(carte, i, j);
 			if (i < carte->height - 1)
-				helper_y(carte, i, j);
+				draw_from_y_to_y1(carte, i, j);
 			j++;
 		}
 		i++;

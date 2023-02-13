@@ -1,4 +1,4 @@
-NAME = FDF
+NAME = fdf
 
 COLOUR_GREEN=\033[92m
 COLOUR_RED=\033[0;31m
@@ -36,7 +36,7 @@ $(NAME) : $(OBJECTS)
 	ar rcs library $(OBJECTS)
     #ar rcs lib $? meaning add the newest changed objects
 
-# yassin : $(OBJECTS)
+# hello : $(OBJECTS)
 # 	$(CC) -fsanitize=address $^ -o $@ $(MLXFLAGS)
 
 %.o: %.c $(HEADER_FILES)

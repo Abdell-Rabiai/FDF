@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "fdf.h": "c"
-    },
-    "[c]": {
-        "editor.defaultFormatter": "ms-vscode.cpptools"
-    }
-}

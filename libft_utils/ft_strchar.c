@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:32:42 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/13 13:49:04 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/13 13:41:25 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_utils.h"
 
-char	*ft_strrchr(const char *s, int c)
+int	ft_strchar(char *string, char c)
 {
-	int				l;
-	unsigned char	cc;
-
-	l = ft_strlen(s);
-	cc = c;
-	while (l > 0 && cc != *(s + l))
-		l--;
-	if (l == 0 && cc != *s)
-		return (0);
-	return ((char *)(s + l));
+	while (*string)
+	{
+		if (c == *string)
+			return (1);
+		string++;
+	}
+	return (0);
 }

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   projection_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 11:32:42 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/13 13:49:04 by arabiai          ###   ########.fr       */
+/*   Created: 2023/02/13 13:37:37 by arabiai           #+#    #+#             */
+/*   Updated: 2023/02/13 14:08:09 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_utils.h"
+#include "fdf.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	isometric_projection(t_map *carte)
 {
-	int				l;
-	unsigned char	cc;
-
-	l = ft_strlen(s);
-	cc = c;
-	while (l > 0 && cc != *(s + l))
-		l--;
-	if (l == 0 && cc != *s)
-		return (0);
-	return ((char *)(s + l));
+	carte->pline->x1 = (carte->pline->x1 - carte->pline->y1) * cos(0.8);
+	carte->pline->y1 = (carte->pline->x1 + carte->pline->y1) * cos(0.8)
+		- carte->z1;
+	carte->pline->x2 = (carte->pline->x2 - carte->pline->y2) * cos(0.8);
+	carte->pline->y2 = (carte->pline->x2 + carte->pline->y2) * cos(0.8)
+		- carte->z2;
 }

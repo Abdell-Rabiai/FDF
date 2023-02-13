@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/12 14:44:30 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/12 22:40:47 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ void initialize_map(map *carte)
 	carte->width = 0;
 	
 	carte->matrix = NULL;
+
+	carte->pline = (point*)malloc(sizeof(point));
+
+	carte->pline->x1 = 0;
+	carte->pline->x2 = 0;
+	carte->pline->y1 = 0;
+	carte->pline->y2 = 0;
+	
 	carte->scale = 8;
 
 	carte->translate_x = 0;
@@ -159,7 +167,7 @@ int key_hook(int keycode, map *carte)
 int main(int argc, char **argv)
 {
 	map carte;
-	(void)argc;
+
 	initialize_map(&carte);
 	file_error(argc, argv);
 	get_map_infos(&carte, argv[1]);
@@ -167,9 +175,9 @@ int main(int argc, char **argv)
 	initialize_matrix(&carte);
 	fill_the_matrix(&carte, argv[1]);
 	// display_map(&carte);
-
 	
 	connect_dots(&carte);
+	
 	mlx_key_hook(carte.win_ptr, key_hook, &carte); // esc key press event
 	mlx_loop(carte.mlx_ptr);
 	return (0);

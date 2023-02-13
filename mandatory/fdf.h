@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/12 14:46:48 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/12 21:52:11 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,22 @@ typedef struct x_y_z_color
 	int color_z;
 } my_matrice;
 
+typedef struct s_point
+{
+	int x1;
+	int y1;
+	int x2;
+	int y2;
+}			point;
+
 typedef struct my_map
 {
 	int height;
 	int width;
 	
 	my_matrice **matrix;
+	point *pline;
+	
 	int scale;
 
 	int translate_x;
@@ -66,16 +76,19 @@ typedef struct my_map
 	int color;
 } map;
 
-void display_map(map *carte); /*should be remved later*/
 
-void initialize_colors(map *carte);
+void	display_map(map *carte); /*should be remved later*/
+
+void	initialize_colors(map *carte);
 
 void	get_map_infos(map *carte, char *filename);
 void	get_map_dimensions(char *filename, map *carte);
 void	fill_the_matrix(map *carte, char *filename);
 
-void	draw_bresenhams_line(int x1, int y1, int x2, int y2, map *carte);
+// void	draw_bresenhams_line(int x1, int y1, int x2, int y2, map *carte);
+void	draw_bresenhams_line(map *carte);
 void	connect_dots(map *carte);
+// void	connect_dots(map *carte);
 
 int		ft_printf(const char *string_format, ...);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);

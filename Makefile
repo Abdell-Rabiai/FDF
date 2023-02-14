@@ -15,7 +15,8 @@ HEADER_FILES = get_next_line/get_next_line.h mandatory/fdf.h
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Imlx -g -fsanitize=address -Ofast
+CFLAGS = -Wall -Wextra -Werror -Imlx -g 
+#-fsanitize=address -Ofast
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit -lz
 # MLXFLAGS = -O3 -lmlx -framework OpenGL -framework AppKit -lz mlx/libmlx.a

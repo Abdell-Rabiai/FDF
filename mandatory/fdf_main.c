@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 16:19:22 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 17:25:45 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@ void	all_hooks(int keycode, t_map *carte)
 	scalling_hooks(keycode, carte);
 	colors_and_projection_hooks(keycode, carte);
 	rotation_hooks(keycode, carte);
+	mlx_destroy_image(carte->mlx_ptr, carte->image.img);
 	mlx_clear_window(carte->mlx_ptr, carte->win_ptr);
+	carte->image.img = mlx_new_image(carte->mlx_ptr, WIDTH, HEIGHT);
+	carte->image.addr = mlx_get_data_addr(carte->image.img,
+			&carte->image.bits_per_pixel, &carte->image.line_length,
+			&carte->image.endian);
 	connect_dots(carte);
+	mlx_put_image_to_window(carte->mlx_ptr, carte->win_ptr,
+		carte->image.img, 0, 0);
 }
 
 int	key_hook(int keycode, t_map *carte)
@@ -29,6 +36,7 @@ int	key_hook(int keycode, t_map *carte)
 	{
 		mlx_destroy_window(carte->mlx_ptr, carte->win_ptr);
 		carte->win_ptr = NULL;
+		system("leaks fdf");
 		exit(0);
 	}
 	else
@@ -68,7 +76,9 @@ int	main(int argc, char **argv)
 	initialize_matrix(&carte);
 	fill_the_matrix(&carte, argv[1]);
 	connect_dots(&carte);
-	mlx_key_hook(carte.win_ptr, key_hook, &carte);
+	mlx_put_image_to_window(carte.mlx_ptr, carte.win_ptr,
+		carte.image.img, 0, 0);
+	mlx_hook(carte.win_ptr, 2, 0, key_hook, &carte);
 	mlx_loop(carte.mlx_ptr);
 	return (0);
 }

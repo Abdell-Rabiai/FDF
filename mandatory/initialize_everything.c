@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:24:59 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 15:15:48 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 17:25:16 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ void	initialize_map(t_map *carte)
 	carte->mlx_ptr = mlx_init();
 	carte->win_ptr = mlx_new_window(carte->mlx_ptr, WIDTH,
 			HEIGHT, "fill de fer");
+	carte->image.img = mlx_new_image(carte->mlx_ptr, WIDTH, HEIGHT);
+	carte->image.addr = mlx_get_data_addr(carte->image.img,
+			&carte->image.bits_per_pixel, &carte->image.line_length,
+			&carte->image.endian);
 	carte->z1 = 0;
 	carte->z2 = 0;
 	initialize_bres_bonus_ops(carte);

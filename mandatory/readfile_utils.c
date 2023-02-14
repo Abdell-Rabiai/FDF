@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 16:04:17 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 17:20:26 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,16 @@ void	get_map_dimensions(char *filename, t_map *carte)
 		perror("EROOR ");
 	line = get_next_line(fd);
 	carte->width = ft_how_many_words(line, ' ');
-	while (line)
+	free(line);
+	while (1)
 	{
 		i++;
-		free(line);
 		line = get_next_line(fd);
+		if (!line)
+			break ;
+		free (line);
 	}
+	free(line);
 	close(fd);
 	carte->height = i;
 }

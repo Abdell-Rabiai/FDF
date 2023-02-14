@@ -43,7 +43,7 @@ $(NAME) : $(OBJECTS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 fdf_exc : $(HEADER_FILES)
-	$(CC) $(CFLAGS) $(MLXFLAGS) mandatory/fdf_main.c library libftprintf.a mlx/libmlx.a -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAGS) mandatory/fdf_main.c library libftprintf.a -o $(NAME)
 	$(ECHO2)
 
 libftprintf :

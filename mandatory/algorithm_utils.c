@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 12:59:14 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:18:54 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int create_argb(int a, int r, int g, int b) // 2 200 250
-{
-	return (a << 24 | r << 16 | g << 8 | b);
-}
-
 void	draw_bresenhams_line(t_map *carte)
 {
 	all_the_stuff_before_bresenhams(carte);
@@ -65,8 +60,8 @@ void	draw_bresenhams_line(t_map *carte)
 	while (1)
 	{
 		mlx_pixel_put(carte->mlx_ptr, carte->win_ptr, carte->pline->x1,
-			carte->pline->y1, carte->color);
-		// my_mlx_pixel_put(&carte->image, carte->pline->x1, carte->pline->y1, 0xffffff);
+			carte->pline->y1, create_argb(0, (carte->color >> 16),
+				(carte->color >> 8) + carte->z1, carte->color - carte->z1 / 2));
 		if (carte->pline->x1 == carte->pline->x2
 			&& carte->pline->y1 == carte->pline->y2)
 			break ;

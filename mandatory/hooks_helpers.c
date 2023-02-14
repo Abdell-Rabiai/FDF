@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:34:01 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 13:05:00 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:21:34 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	scalling_hooks(int keycode, t_map *carte)
 	if (keycode == 78)
 		carte->scale -= 3;
 	if (keycode == 8)
-		carte->stretch_z += 1.1; 
+		carte->stretch_z += 1.1;
 	if (keycode == 9)
 		carte->stretch_z -= 1.1;
 }
@@ -69,15 +69,15 @@ void	colors_and_projection_hooks(int keycode, t_map *carte)
 void	rotation_hooks(int keycode, t_map *carte)
 {
 	if (keycode == 91)
-		carte->rotate_x += 1;
+		carte->rotate_x += 0.25;
 	if (keycode == 84)
-		carte->rotate_x -= 1;
+		carte->rotate_x -= 0.25;
 	if (keycode == 86)
-		carte->rotate_y += 1;
+		carte->rotate_y += 0.25;
 	if (keycode == 88)
-		carte->rotate_y -= 1;
+		carte->rotate_y -= 0.25;
 	if (keycode == 92)
-		carte->rotate_z += 1;
+		carte->rotate_z += 0.25;
 	if (keycode == 83)
-		carte->rotate_z -= 1;
+		carte->rotate_z -= 0.25;
 }

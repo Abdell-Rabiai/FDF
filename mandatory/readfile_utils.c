@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/13 14:18:46 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:04:17 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	display_map(t_map *carte)
 		j = 0;
 		while (j < carte->width)
 		{
-			printf("%3d", (carte->matrix[i][j]).z);
+			ft_printf("%3d", (carte->matrix[i][j]).z);
 			j++;
 		}
 		i++;
-		printf("\n");
+		ft_printf("\n");
 	}
 }
 

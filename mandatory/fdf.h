@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 13:06:38 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 16:19:28 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,20 @@ typedef struct my_map
 	t_matrice	**matrix;
 	t_point		*pline;
 	t_data		image;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	int			scale;
 	int			translate_x;
 	int			translate_y;
 	int			translate_z;
-	int			rotate_x;
-	int			rotate_y;
-	int			rotate_z;
+	double		rotate_x;
+	double		rotate_y;
+	double		rotate_z;
 	double		stretch_z;
 	int			bool_flat;
 	int			show_guid;
 	int			make_it_colorful;
 	int			get_colors_from_map;
-	void		*mlx_ptr;
-	void		*win_ptr;
 	int			dx;
 	int			dy;
 	int			err;
@@ -102,6 +102,7 @@ void	isometric_projection(t_map *carte);
 /*colors*/
 int		get_color(char *str);
 void	z_color(t_map *carte);
+int		create_argb(int a, int r, int g, int b);
 /*helper functions for bresnhems line*/
 void	draw_from_x_to_x1(t_map *carte, int i, int j);
 void	draw_from_y_to_y1(t_map *carte, int i, int j);
@@ -116,7 +117,7 @@ void	scalling_hooks(int keycode, t_map *carte);
 void	colors_and_projection_hooks(int keycode, t_map *carte);
 void	rotation_hooks(int keycode, t_map *carte);
 /**strings guide*/
-void put_strings(t_map *carte);
+void	put_strings(t_map *carte);
 
 int		ft_printf(const char *string_format, ...);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);

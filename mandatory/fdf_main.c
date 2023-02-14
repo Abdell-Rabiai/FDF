@@ -6,11 +6,16 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 17:25:45 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 17:28:39 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	exit_hook(void)
+{
+	exit(0);
+}
 
 void	all_hooks(int keycode, t_map *carte)
 {
@@ -79,6 +84,7 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(carte.mlx_ptr, carte.win_ptr,
 		carte.image.img, 0, 0);
 	mlx_hook(carte.win_ptr, 2, 0, key_hook, &carte);
+	mlx_hook(carte.win_ptr, 17, 0, exit_hook, 0);
 	mlx_loop(carte.mlx_ptr);
 	return (0);
 }

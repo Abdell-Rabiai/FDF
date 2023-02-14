@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:38:28 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/13 14:06:29 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 13:04:45 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	z_color(t_map *carte)
 	if (z2 != 0 || z1 != 0)
 	{
 		move_the_roof(carte);
-		(carte->matrix[carte->pline->y1][carte->pline->x1]).color_z = 0xff427b;
-		(carte->matrix[carte->pline->y2][carte->pline->x2]).color_z = 0xff427b;
+		(carte->matrix[carte->pline->y1][carte->pline->x1]).color_z = 0xff427b + z1*2;
+		(carte->matrix[carte->pline->y2][carte->pline->x2]).color_z = 0xff427b + z1*2;
 	}
 	else
 	{

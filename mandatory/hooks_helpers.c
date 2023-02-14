@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:34:01 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/13 16:41:29 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 13:05:00 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	scalling_hooks(int keycode, t_map *carte)
 	if (keycode == 78)
 		carte->scale -= 3;
 	if (keycode == 8)
-		carte->stretch_z += 1.1;
+		carte->stretch_z += 1.1; 
 	if (keycode == 9)
 		carte->stretch_z -= 1.1;
 }

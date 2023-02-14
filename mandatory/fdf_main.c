@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/13 16:44:15 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:18:57 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	all_hooks(int keycode, t_map *carte)
 	rotation_hooks(keycode, carte);
 	mlx_clear_window(carte->mlx_ptr, carte->win_ptr);
 	connect_dots(carte);
+	// mlx_put_image_to_window(carte->mlx_ptr, carte->win_ptr, carte->image.img, 0, 0);
 }
 
 int	key_hook(int keycode, t_map *carte)
@@ -67,7 +68,13 @@ int	main(int argc, char **argv)
 	get_map_infos(&carte, argv[1]);
 	initialize_matrix(&carte);
 	fill_the_matrix(&carte, argv[1]);
+	printf("{%p}\n", carte.mlx_ptr);
+	// carte.image.img = mlx_new_image(carte.mlx_ptr, WIDTH, HEIGHT);
+	// carte.image.addr = mlx_get_data_addr(&carte.image.img, &carte.image.bits_per_pixel, &carte.image.line_length, &carte.image.endian);
+
 	connect_dots(&carte);
+	// mlx_put_image_to_window(carte.mlx_ptr, carte.win_ptr, carte.image.img, 0, 0);
+
 	mlx_key_hook(carte.win_ptr, key_hook, &carte);
 	mlx_loop(carte.mlx_ptr);
 	return (0);

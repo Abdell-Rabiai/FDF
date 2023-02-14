@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/13 16:42:44 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 12:59:14 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,19 @@ void	all_the_stuff_before_bresenhams(t_map *carte)
 	shift_x_y(carte);
 }
 
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+int create_argb(int a, int r, int g, int b) // 2 200 250
+{
+	return (a << 24 | r << 16 | g << 8 | b);
+}
+
 void	draw_bresenhams_line(t_map *carte)
 {
 	all_the_stuff_before_bresenhams(carte);
@@ -53,6 +66,7 @@ void	draw_bresenhams_line(t_map *carte)
 	{
 		mlx_pixel_put(carte->mlx_ptr, carte->win_ptr, carte->pline->x1,
 			carte->pline->y1, carte->color);
+		// my_mlx_pixel_put(&carte->image, carte->pline->x1, carte->pline->y1, 0xffffff);
 		if (carte->pline->x1 == carte->pline->x2
 			&& carte->pline->y1 == carte->pline->y2)
 			break ;

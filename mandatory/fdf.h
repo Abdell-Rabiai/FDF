@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/13 16:40:49 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/14 13:06:38 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # include "../ft_printf/ft_printf.h"
 # include "../libft_utils/libft_utils.h"
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
 typedef struct x_y_z_color
 {
 	int	x;
@@ -45,6 +53,7 @@ typedef struct my_map
 	int			width;
 	t_matrice	**matrix;
 	t_point		*pline;
+	t_data		image;
 	int			scale;
 	int			translate_x;
 	int			translate_y;
@@ -52,7 +61,7 @@ typedef struct my_map
 	int			rotate_x;
 	int			rotate_y;
 	int			rotate_z;
-	int			stretch_z;
+	double		stretch_z;
 	int			bool_flat;
 	int			show_guid;
 	int			make_it_colorful;

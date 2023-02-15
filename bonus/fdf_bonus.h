@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 19:23:59 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:42:38 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct my_map
 {
 	int			height;
 	int			width;
+	int			wid;
 	t_matrice	**matrix;
 	t_point		*pline;
 	t_data		image;

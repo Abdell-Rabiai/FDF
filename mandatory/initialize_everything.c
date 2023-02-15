@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:24:59 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/15 15:43:20 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:53:07 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ void	initialize_bres_bonus_ops(t_map *carte)
 	carte->bool_flat = 1;
 	carte->show_guid = 1;
 	carte->stretch_z = 1;
+	carte->z1 = 0;
+	carte->z2 = 0;
 }
 
 void	initialize_map(t_map *carte)
 {
 	carte->height = 0;
 	carte->width = 0;
+	carte->wid = 0;
 	carte->matrix = NULL;
 	carte->pline = (t_point *)malloc(sizeof(t_point));
 	carte->pline->x1 = 0;
@@ -61,13 +64,16 @@ void	initialize_map(t_map *carte)
 	carte->mlx_ptr = mlx_init();
 	carte->win_ptr = mlx_new_window(carte->mlx_ptr, WIDTH,
 			HEIGHT, "fill de fer");
-	carte->image.img = mlx_new_image(carte->mlx_ptr, WIDTH, HEIGHT);
+	if (carte->show_guid == 0)
+		carte->wid = WIDTH;
+	else
+		carte->wid = WIDTH - 610;
+	carte->image.img = mlx_new_image(carte->mlx_ptr, carte->wid, HEIGHT);
 	carte->image.addr = mlx_get_data_addr(carte->image.img,
 			&carte->image.bits_per_pixel, &carte->image.line_length,
 			&carte->image.endian);
-	carte->z1 = 0;
-	carte->z2 = 0;
 	initialize_bres_bonus_ops(carte);
+	color_the_window(carte);
 }
 
 void	initialize_matrix(t_map *carte)

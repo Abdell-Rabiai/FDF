@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 17:24:10 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/15 16:53:34 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_bresenhams_line(t_map *carte)
 	initialize_bresenhams_variables(carte);
 	while (1)
 	{
-		if ((carte->pline->x1 > 0 && carte->pline->x1 < WIDTH)
+		if ((carte->pline->x1 > 0 && carte->pline->x1 < carte->wid)
 			&& (carte->pline->y1 > 0 && carte->pline->y1 < HEIGHT))
 			my_mlx_pixel_put(&carte->image, carte->pline->x1, carte->pline->y1,
 				create_argb(0, (carte->color >> 16), (carte->color >> 8)

@@ -6,19 +6,39 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:37:37 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/15 16:45:00 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:29:15 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	isometric_projection(t_map *carte)
+//PI / 6 = 0.52
+void	isometric_projection_octant3(t_map *carte)
 {
-	carte->pline->x1 = (carte->pline->x1 - carte->pline->y1) * cos(0.8);
-	carte->pline->y1 = (carte->pline->x1 + carte->pline->y1) * cos(0.8)
+	carte->pline->x1 = (carte->pline->x1) * cos(PI / 6)
+		- (carte->z1) * sin(PI / 6);
+	carte->pline->y1 = (carte->pline->y1) - carte->z1;
+	carte->pline->x2 = (carte->pline->x2) * cos(PI / 6)
+		- (carte->z2) * sin(PI / 6);
+	carte->pline->y2 = (carte->pline->y2) - carte->z2;
+}
+
+void	isometric_projection_octant2(t_map *carte)
+{
+	carte->pline->x1 = (carte->pline->x1);
+	carte->pline->y1 = (carte->pline->y1) * cos(35.264)
+		+ carte->z1 * sin(35.264);
+	carte->pline->x2 = (carte->pline->x2);
+	carte->pline->y2 = (carte->pline->y2) * cos(35.264)
+		+ carte->z2 * sin(35.264);
+}
+
+void	isometric_projection_octant1(t_map *carte)
+{
+	carte->pline->x1 = (carte->pline->x1 - carte->pline->y1) * cos(PI / 6);
+	carte->pline->y1 = (carte->pline->x1 + carte->pline->y1) * cos(PI / 6)
 		- carte->z1;
-	carte->pline->x2 = (carte->pline->x2 - carte->pline->y2) * cos(0.8);
-	carte->pline->y2 = (carte->pline->x2 + carte->pline->y2) * cos(0.8)
+	carte->pline->x2 = (carte->pline->x2 - carte->pline->y2) * cos(PI / 6);
+	carte->pline->y2 = (carte->pline->x2 + carte->pline->y2) * cos(PI / 6)
 		- carte->z2;
 }
 

@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/15 16:42:38 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:30:01 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ typedef struct my_map
 	int			show_guid;
 	int			make_it_colorful;
 	int			get_colors_from_map;
+	int			po1;
+	int			po2;
+	int			po3;
 	int			dx;
 	int			dy;
 	int			err;

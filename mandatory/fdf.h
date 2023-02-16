@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/15 16:33:14 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:28:11 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	draw_bresenhams_line(t_map *carte);
 void	connect_dots(t_map *carte);
 
 /*projectino utils*/
-void	isometric_projection(t_map *carte);
+void	isometric_projection_octant1(t_map *carte);
+void	isometric_projection_octant2(t_map *carte);
+void	isometric_projection_octant3(t_map *carte);
 
 /*helper functions for bresnhems line*/
 void	draw_from_x_to_x1(t_map *carte, int i, int j);

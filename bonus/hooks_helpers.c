@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:34:01 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 18:06:50 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:47:11 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ void	scalling_hooks(int keycode, t_map *carte)
 		carte->stretch_z += 0.5;
 	if (keycode == 9)
 		carte->stretch_z -= 0.5;
+	if (keycode == 12)
+	{
+		carte->po1 = 1;
+		carte->po2 = 0;
+		carte->po3 = 0;
+	}
+	if (keycode == 3)
+	{
+		carte->po3 = 0;
+		carte->po2 = 0;
+		carte->po1 = 0;
+	}
 }
 
 void	colors_and_projection_hooks(int keycode, t_map *carte)
@@ -80,4 +92,16 @@ void	rotation_hooks(int keycode, t_map *carte)
 		carte->rotate_z += 0.08;
 	if (keycode == 83)
 		carte->rotate_z -= 0.08;
+	if (keycode == 13)
+	{
+		carte->po2 = 1;
+		carte->po1 = 0;
+		carte->po3 = 0;
+	}
+	if (keycode == 14)
+	{
+		carte->po3 = 1;
+		carte->po2 = 0;
+		carte->po1 = 0;
+	}
 }

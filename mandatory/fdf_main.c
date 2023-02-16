@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:37:53 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/15 16:54:07 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:50:54 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,14 @@ void	put_strings(t_map *carte)
 		" use 2 and 8 to rotate the shape around the axis Y\n");
 	mlx_string_put(carte->mlx_ptr, carte->win_ptr, WIDTH - 610, 190, 0xffffab,
 		" use G to make the shape colorful\n");
-	mlx_string_put(carte->mlx_ptr, carte->win_ptr, WIDTH - 610, 220, 0xffffab,
-		" use F to apply the isometric projection\n");
 	mlx_string_put(carte->mlx_ptr, carte->win_ptr, WIDTH - 610, 250, 0xffffab,
 		" click ENTER to make the guide dissapear\n");
 	mlx_string_put(carte->mlx_ptr, carte->win_ptr, WIDTH - 610, 280, 0xffffab,
 		" click R to reset the parameters to the initial state\n");
+	mlx_string_put(carte->mlx_ptr, carte->win_ptr, WIDTH - 610, 310, 0xffffab,
+		" click Q,W,E to change the isometric projection view\n");
+	mlx_string_put(carte->mlx_ptr, carte->win_ptr, WIDTH - 610, 220, 0xffffab,
+		" use F make if flat\n");
 }
 
 int	main(int argc, char **argv)

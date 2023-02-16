@@ -6,26 +6,11 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:01:11 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/15 16:53:34 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:42:54 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	initialize_bresenhams_variables(t_map *carte)
-{
-	carte->dx = abs(carte->pline->x2 - carte->pline->x1);
-	carte->dy = -abs(carte->pline->y2 - carte->pline->y1);
-	if (carte->pline->x1 < carte->pline->x2)
-		carte->step_x = 1;
-	else
-		carte->step_x = -1;
-	if (carte->pline->y1 < carte->pline->y2)
-		carte->step_y = 1;
-	else
-		carte->step_y = -1;
-	carte->err = carte->dx + carte->dy;
-}
 
 void	all_the_stuff_before_bresenhams(t_map *carte)
 {
@@ -40,8 +25,12 @@ void	all_the_stuff_before_bresenhams(t_map *carte)
 	carte->color = (carte->matrix[carte->pline->y1][carte->pline->x1]).color_z;
 	scale(carte);
 	rotate_xyz(&z1, &z2, carte);
-	if (carte->bool_flat == 1)
-		isometric_projection(carte);
+	if (carte->po1 == 1)
+		isometric_projection_octant1(carte);
+	else if (carte->po2 == 1)
+		isometric_projection_octant2(carte);
+	else if (carte->po3 == 1)
+		isometric_projection_octant3(carte);
 	shift_x_y(carte);
 }
 
@@ -51,6 +40,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+void	initialize_bresenhams_variables(t_map *carte)
+{
+	carte->dx = abs(carte->pline->x2 - carte->pline->x1);
+	carte->dy = -abs(carte->pline->y2 - carte->pline->y1);
+	if (carte->pline->x1 < carte->pline->x2)
+		carte->step_x = 1;
+	else
+		carte->step_x = -1;
+	if (carte->pline->y1 < carte->pline->y2)
+		carte->step_y = 1;
+	else
+		carte->step_y = -1;
+	carte->err = carte->dx + carte->dy;
 }
 
 void	draw_bresenhams_line(t_map *carte)

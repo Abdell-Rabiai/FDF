@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:24:59 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/15 16:53:07 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:48:20 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ void	initialize_bres_bonus_ops(t_map *carte)
 	carte->rotate_x = 0;
 	carte->rotate_y = 0;
 	carte->rotate_z = 0;
-	carte->bool_flat = 1;
 	carte->show_guid = 1;
 	carte->stretch_z = 1;
 	carte->z1 = 0;
 	carte->z2 = 0;
+	carte->bool_flat = 1;
+	carte->po1 = 1;
+	carte->po2 = 0;
+	carte->po3 = 0;
 }
 
 void	initialize_map(t_map *carte)

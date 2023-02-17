@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:53:05 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/16 17:28:11 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/16 22:31:38 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../bonus/fdf_bonus.h"
 
-// void	display_map(map *carte); /*should be remved later*/
+void	display_map(t_map *carte);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	color_the_window(t_map *carte);
 

@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:44:44 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/14 17:20:26 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/17 21:10:06 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	display_map(t_map *carte)
 		j = 0;
 		while (j < carte->width)
 		{
-			ft_printf("%3d", (carte->matrix[i][j]).z);
+			printf("%3d", (carte->matrix[i][j]).z);
 			j++;
 		}
 		i++;
@@ -63,7 +63,7 @@ void	file_error(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
-		perror("cannot open the file");
+		ft_printf("cannot open the file %s", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 }

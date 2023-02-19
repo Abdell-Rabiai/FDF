@@ -6,7 +6,7 @@
 /*   By: arabiai <arabiai@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:24:59 by arabiai           #+#    #+#             */
-/*   Updated: 2023/02/16 17:48:20 by arabiai          ###   ########.fr       */
+/*   Updated: 2023/02/19 14:00:47 by arabiai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	initialize_map(t_map *carte)
 	carte->mlx_ptr = mlx_init();
 	carte->win_ptr = mlx_new_window(carte->mlx_ptr, WIDTH,
 			HEIGHT, "fill de fer");
-	if (carte->show_guid == 0)
+	if (carte->show_guid == 1)
 		carte->wid = WIDTH;
 	else
 		carte->wid = WIDTH - 610;

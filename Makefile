@@ -15,11 +15,9 @@ HEADER_FILES = get_next_line/get_next_line.h mandatory/fdf.h bonus/fdf_bonus.h
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Imlx -g 
-#-fsanitize=address -Ofast
+CFLAGS = -Wall -Wextra -Werror -Imlx -g -fsanitize=address -Ofast
 
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit -lz
-# MLXFLAGS = -O3 -lmlx -framework OpenGL -framework AppKit -lz mlx/libmlx.a
 
 RM = rm -rf
 
@@ -37,13 +35,10 @@ $(NAME) : $(OBJECTS)
 	ar rcs library $(OBJECTS)
     #ar rcs lib $? meaning add the newest changed objects
 
-# hello : $(OBJECTS)
-# 	$(CC) -fsanitize=address $^ -o $@ $(MLXFLAGS)
-
 %.o: %.c $(HEADER_FILES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-fdf_exc : $(HEADER_FILES)
+fdf_exc : 
 	$(CC) $(CFLAGS) $(MLXFLAGS) mandatory/fdf_main.c library libftprintf.a -o $(NAME)
 	$(ECHO2)
 
